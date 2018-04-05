@@ -26,7 +26,7 @@ public class QuizHandler{
     }
 
     public void setCorrect() {
-        this.correct = this.correct++;
+        correct++;
     }
 
     public int getAnsweredQuestions() {
@@ -34,6 +34,10 @@ public class QuizHandler{
     }
 
     public void setAnswered() {
-        this.answered = this.answered++;
+        answered++;
+    }
+
+    public int getArrayListLength(){
+        return questionList.size();
     }
 }

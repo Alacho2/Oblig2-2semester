@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -83,22 +84,29 @@ public class WindowController extends Application{
         answers = new Label();
         question.setText("Hva er hovedstaden i");
         country.setText(q.getQuestion());
-        answers.setText(Integer.toBinaryString(qh.getCorrect()) + "/" + (Integer.toBinaryString(qh.getAnsweredQuestions())));
+        answers.setText("0/0");
     }
 
     public void buttonController(){
         send = new Button("Svar");
-        send.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+
+        send.setOnAction(e -> {
                 String answer = answerField.getText();
-                qh.setAnswered();
+
                 if(answer.equalsIgnoreCase(q.getAnswer())){
                     qh.setCorrect();
                 }
-                q = qh.getNextQuestion(qh.getAnsweredQuestions());
-                answerField.setText(""); //Sets the textfield to nothing.
-            }
+
+                if(qh.getAnsweredQuestions() < (qh.getArrayListLength()-1)){
+                    qh.setAnswered();
+                    q = qh.getNextQuestion(qh.getAnsweredQuestions());
+                    country.setText(q.getQuestion());
+                    imageView.setImage(new Image(q.getImage()));
+                    answers.setText(Integer.toString(qh.getCorrect()) + "/" + (Integer.toString(qh.getAnsweredQuestions())));
+                } else {
+                    answers.setText("Du klarte: " + Integer.toString(qh.getCorrect()) + "/" + (Integer.toString(qh.getAnsweredQuestions())) + " Takk for at du deltok!");
+                }
+                answerField.setText(""); //Setter tekstfeltet til ingenting.
         });
     }
 }
