@@ -14,7 +14,6 @@ public class WindowController extends Application{
     //STAGE ER HELE VINDUET
     //SCENE ER INNI VINDUET
 
-    QuizHandler qh = new QuizHandler();
     ActionHandler ah = new ActionHandler();
 
     Button send;
@@ -30,8 +29,10 @@ public class WindowController extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Quizmaster");
-        stage.setMinWidth(100);
-        stage.setMinHeight(100);
+        stage.setMinWidth(370);
+        stage.setMinHeight(370);
+        stage.setMaxHeight(500);
+        stage.setMaxWidth(500);
 
         setMyStage();
         Scene scene = new Scene(pane, 500, 500);
