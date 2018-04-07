@@ -1,3 +1,6 @@
+import javafx.event.ActionEvent;
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,6 +19,7 @@ public class QuizHandler{
                 new Question("Russland?", "Moskva", "http://flags.fmcdn.net/data/flags/w580/ru.png"),
                 new Question("Romania?", "Bukarest", "http://flags.fmcdn.net/data/flags/w580/ro.png"));
     }
+
 
     public Question getNextQuestion(int i){
         return questionList.get(i);

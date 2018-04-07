@@ -1,6 +1,4 @@
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,15 +15,16 @@ public class WindowController extends Application{
     //SCENE ER INNI VINDUET
 
     QuizHandler qh = new QuizHandler();
-    Question q;
+    ActionHandler ah = new ActionHandler();
+
     Button send;
     GridPane pane;
 
-    TextField answerField;
-    ImageView imageView;
-    Label country;
-    Label question;
-    Label answers;
+    static TextField answerField;
+    static ImageView imageView;
+    static Label country;
+    static Label question;
+    static Label answers;
 
 
     @Override
@@ -41,7 +40,6 @@ public class WindowController extends Application{
     }
 
     public void setMyStage(){
-        componentController();
         imageController();
         textFieldController();
         labelController();
@@ -49,12 +47,8 @@ public class WindowController extends Application{
         paneController();
     }
 
-    public void componentController(){
-        q = qh.getNextQuestion(0);
-    }
-
     public void imageController(){
-        imageView = new ImageView(q.getImage());
+        imageView = new ImageView("http://flags.fmcdn.net/data/flags/w580/no.png");
         imageView.setFitHeight(422/2);
         imageView.setFitWidth(580/2);
     }
@@ -83,30 +77,12 @@ public class WindowController extends Application{
         country = new Label();
         answers = new Label();
         question.setText("Hva er hovedstaden i");
-        country.setText(q.getQuestion());
+        country.setText("Norge?");
         answers.setText("0/0");
     }
 
     public void buttonController(){
         send = new Button("Svar");
-
-        send.setOnAction(e -> {
-                String answer = answerField.getText();
-
-                if(answer.equalsIgnoreCase(q.getAnswer())){
-                    qh.setCorrect();
-                }
-
-                if(qh.getAnsweredQuestions() < (qh.getArrayListLength()-1)){
-                    qh.setAnswered();
-                    q = qh.getNextQuestion(qh.getAnsweredQuestions());
-                    country.setText(q.getQuestion());
-                    imageView.setImage(new Image(q.getImage()));
-                    answers.setText(Integer.toString(qh.getCorrect()) + "/" + (Integer.toString(qh.getAnsweredQuestions())));
-                } else {
-                    answers.setText("Du klarte: " + Integer.toString(qh.getCorrect()) + "/" + (Integer.toString(qh.getAnsweredQuestions())) + " Takk for at du deltok!");
-                }
-                answerField.setText(""); //Setter tekstfeltet til ingenting.
-        });
+        send.setOnAction(ah::verifyAnswer);
     }
 }
