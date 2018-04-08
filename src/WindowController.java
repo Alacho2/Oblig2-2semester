@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -14,16 +13,16 @@ public class WindowController extends Application{
     //STAGE ER HELE VINDUET
     //SCENE ER INNI VINDUET
 
-    ActionHandler ah = new ActionHandler();
+    private ActionHandler ah = new ActionHandler();
 
-    Button send;
-    GridPane pane;
+    private Button send;
+    private GridPane pane;
 
     static TextField answerField;
     static ImageView imageView;
     static Label country;
-    static Label question;
     static Label answers;
+    private static Label question;
 
 
     @Override
@@ -35,12 +34,13 @@ public class WindowController extends Application{
         stage.setMaxWidth(500);
 
         setMyStage();
+
         Scene scene = new Scene(pane, 500, 500);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void setMyStage(){
+    private void setMyStage(){
         imageController();
         textFieldController();
         labelController();
@@ -48,13 +48,13 @@ public class WindowController extends Application{
         paneController();
     }
 
-    public void imageController(){
+    private void imageController(){
         imageView = new ImageView("http://flags.fmcdn.net/data/flags/w580/no.png");
         imageView.setFitHeight(422/2);
         imageView.setFitWidth(580/2);
     }
 
-    public void paneController(){
+    private void paneController(){
         pane = new GridPane();
         pane.setVgap(10);
         pane.setHgap(10);
@@ -67,23 +67,21 @@ public class WindowController extends Application{
         pane.add(answers, 0, 4);
     }
 
-    public void textFieldController(){
+    private void textFieldController(){
         answerField = new TextField();
         answerField.setPromptText("Ditt svar");
         answerField.setFocusTraversable(false);
     }
 
-    public void labelController(){
-        question = new Label();
-        country = new Label();
-        answers = new Label();
-        question.setText("Hva er hovedstaden i");
-        country.setText("Norge?");
-        answers.setText("0/0");
+    private void labelController(){
+        question = new Label("Hva er hovedstaden i");
+        country = new Label("Norge?");
+        answers = new Label("0/0");
     }
 
-    public void buttonController(){
+    private void buttonController(){
         send = new Button("Svar");
         send.setOnAction(ah::verifyAnswer);
+        //send.setOnKeyPressed(ah::keyPressed);
     }
 }
