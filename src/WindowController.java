@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -12,6 +13,8 @@ public class WindowController extends Application{
 
     //STAGE ER HELE VINDUET
     //SCENE ER INNI VINDUET
+
+    //HUSK Å SPØRRE KHALID OM KEYEVENT OG ACTIONHANDLER
 
     private ActionHandler ah = new ActionHandler();
 
@@ -36,6 +39,7 @@ public class WindowController extends Application{
         setMyStage();
 
         Scene scene = new Scene(pane, 500, 500);
+        scene.addEventFilter(KeyEvent.KEY_RELEASED, ah::keyPressed);
         stage.setScene(scene);
         stage.show();
     }
@@ -82,6 +86,5 @@ public class WindowController extends Application{
     private void buttonController(){
         send = new Button("Svar");
         send.setOnAction(ah::verifyAnswer);
-        send.setOnKeyPressed(ah::keyPressed);
     }
 }
