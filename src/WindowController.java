@@ -82,6 +82,6 @@ public class WindowController extends Application{
     private void buttonController(){
         send = new Button("Svar");
         send.setOnAction(ah::verifyAnswer);
-        //send.setOnKeyPressed(ah::keyPressed);
+        send.setOnKeyPressed(ah::keyPressed);
     }
 }
