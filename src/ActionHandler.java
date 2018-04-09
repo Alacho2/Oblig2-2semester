@@ -30,10 +30,10 @@ public class ActionHandler {
             q = qh.getNextQuestion(qh.getAnsweredQuestions());
             wc.country.setText(q.getQuestion());
             wc.imageView.setImage(new Image(q.getImage()));
-            wc.answers.setText(Integer.toString(qh.getCorrect()) + "/" + (Integer.toString(qh.getAnsweredQuestions())));
+            wc.answers.setText(qh.getCorrect() + "/" + qh.getAnsweredQuestions());
         } else {
-            wc.answers.setText("Du klarte: " + Integer.toString(qh.getCorrect()) + "/" + (Integer.toString(qh.getAnsweredQuestions()+1)) + " Takk for at du deltok!");
+            wc.answers.setText("Du klarte: " + qh.getCorrect() + "/" + (qh.getAnsweredQuestions()+1) + " Takk for at du deltok!");
         }
-        wc.answerField.setText(""); //Setter tekstfeltet til ingenting.
+        wc.answerField.clear(); //Setter tekstfeltet til ingenting.i
     }
 }
