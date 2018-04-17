@@ -1,7 +1,7 @@
-import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 public class ActionHandler {
 
@@ -9,7 +9,7 @@ public class ActionHandler {
     Question q = qh.getNextQuestion(0);
     public WindowController wc;
 
-    public void verifyAnswer(ActionEvent e){
+    public void verifyAnswer(MouseEvent e){
         action();
     }
 
@@ -20,7 +20,7 @@ public class ActionHandler {
     }
 
     public void action(){
-        String answer = wc.answerField.getText();
+        String answer = WindowController.getAnswerfieldValue();
 
         if(answer.equalsIgnoreCase(q.getAnswer())){
             qh.setCorrect();
@@ -28,12 +28,12 @@ public class ActionHandler {
         if(qh.getAnsweredQuestions() < (qh.getArrayListLength()-1)){
             qh.setAnswered();
             q = qh.getNextQuestion(qh.getAnsweredQuestions());
-            wc.country.setText(q.getQuestion());
-            wc.imageView.setImage(new Image(q.getImage()));
-            wc.answers.setText(qh.getCorrect() + "/" + qh.getAnsweredQuestions());
+            WindowController.setCountryText(q.getQuestion());
+            WindowController.setImageURL(q.getImage());
+            WindowController.answers.setText(qh.getCorrect() + "/" + qh.getAnsweredQuestions());
         } else {
-            wc.answers.setText("Du klarte: " + qh.getCorrect() + "/" + (qh.getAnsweredQuestions()+1) + " Takk for at du deltok!");
+            WindowController.answers.setText("Du klarte: " + qh.getCorrect() + "/" + (qh.getAnsweredQuestions()+1) + " Takk for at du deltok!");
         }
-        wc.answerField.clear(); //Setter tekstfeltet til ingenting.i
+        WindowController.answerField.clear(); //Setter tekstfeltet til ingenting.i
     }
 }

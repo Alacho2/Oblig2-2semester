@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -13,8 +14,6 @@ public class WindowController extends Application{
 
     //STAGE ER HELE VINDUET
     //SCENE ER INNI VINDUET
-
-    //HUSK Å SPØRRE KHALID OM KEYEVENT OG ACTIONHANDLER
 
     private ActionHandler ah = new ActionHandler();
 
@@ -85,6 +84,19 @@ public class WindowController extends Application{
 
     private void buttonController(){
         send = new Button("Svar");
-        send.setOnAction(ah::verifyAnswer);
+        send.setOnMouseClicked(ah::verifyAnswer);
+
+    }
+
+    public static String getAnswerfieldValue(){
+        return answerField.getText();
+    }
+
+    public static void setCountryText(String newCountry){
+        country.setText(newCountry);
+    }
+
+    public static void setImageURL(String url){
+        imageView.setImage(new Image(url));
     }
 }

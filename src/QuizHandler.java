@@ -14,7 +14,7 @@ public class QuizHandler{
                 new Question("Sverige?", "Stockholm", "http://flags.fmcdn.net/data/flags/w580/se.png"),
                 new Question("Finland?", "Helsinki", "http://flags.fmcdn.net/data/flags/w580/fi.png"),
                 new Question("Russland?", "Moskva", "http://flags.fmcdn.net/data/flags/w580/ru.png"),
-                new Question("Romania?", "Bukarest", "http://flags.fmcdn.net/data/flags/w580/ro.png"));
+                new Question("Romania?", "Bucuresti", "http://flags.fmcdn.net/data/flags/w580/ro.png"));
     }
 
 
