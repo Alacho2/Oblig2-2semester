@@ -6,6 +6,11 @@ public class QuizHandler{
     ArrayList<Question> questionList = new ArrayList<>();
     int answered, correct;
 
+
+    /**
+     * The constructor for QuizHandler. Sets up question and the right answer for them.
+     * A new question here, adds a new question to the quiz.
+     */
     public QuizHandler(){
         answered = 0;
         correct = 0;
@@ -18,6 +23,9 @@ public class QuizHandler{
     }
 
 
+    /**
+     * Regular getters and setters.
+     */
     public Question getNextQuestion(int i){
         return questionList.get(i);
     }

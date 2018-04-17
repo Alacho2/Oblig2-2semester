@@ -9,16 +9,29 @@ public class ActionHandler {
     Question q = qh.getNextQuestion(0);
     public WindowController wc;
 
+    /**
+     * A method that handles the interaction of mouseclick.
+     *
+     * @param e    The mouse interaction.
+     */
     public void verifyAnswer(MouseEvent e){
         action();
     }
 
+    /**
+     * A method that handles the interaction of enter
+     *
+     * @param e    Event for handling the key.
+     */
     public void keyPressed(KeyEvent e){
         if(e.getCode() == KeyCode.ENTER){
             action();
         }
     }
 
+    /**
+     * The action that handles the Quiz's interaction
+     */
     public void action(){
         String answer = WindowController.getAnswerfieldValue();
 

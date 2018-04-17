@@ -12,9 +12,6 @@ import javafx.stage.Stage;
 
 public class WindowController extends Application{
 
-    //STAGE ER HELE VINDUET
-    //SCENE ER INNI VINDUET
-
     private ActionHandler ah = new ActionHandler();
 
     private Button send;
@@ -43,6 +40,9 @@ public class WindowController extends Application{
         stage.show();
     }
 
+    /**
+     * Composes all the methods together.
+     */
     private void setMyStage(){
         imageController();
         textFieldController();
@@ -51,12 +51,18 @@ public class WindowController extends Application{
         paneController();
     }
 
+    /**
+     * Setting up the image for questions.
+     */
     private void imageController(){
         imageView = new ImageView("http://flags.fmcdn.net/data/flags/w580/no.png");
         imageView.setFitHeight(422/2);
         imageView.setFitWidth(580/2);
     }
 
+    /**
+     * Setting up the GridPane
+     */
     private void paneController(){
         pane = new GridPane();
         pane.setVgap(10);
@@ -70,32 +76,54 @@ public class WindowController extends Application{
         pane.add(answers, 0, 4);
     }
 
+    /**
+     * Setting up the textField for the questions.
+     */
     private void textFieldController(){
         answerField = new TextField();
         answerField.setPromptText("Ditt svar");
         answerField.setFocusTraversable(false);
     }
 
+    /**
+     * Setting up the labels for the questions.
+     */
     private void labelController(){
         question = new Label("Hva er hovedstaden i");
         country = new Label("Norge?");
         answers = new Label("0/0");
     }
 
+    /**
+     * Add functionality to the button.
+     * Method referencing to clean up the button controller.
+     */
     private void buttonController(){
         send = new Button("Svar");
         send.setOnMouseClicked(ah::verifyAnswer);
 
     }
 
+    /**
+     * Method that returns the value of the textfield.
+     * @return    The value of the textfield.
+     */
     public static String getAnswerfieldValue(){
         return answerField.getText();
     }
 
+    /**
+     * Sets a new value for the country label
+     * @param newCountry    Value for the country label.
+     */
     public static void setCountryText(String newCountry){
         country.setText(newCountry);
     }
 
+    /**
+     * Sets a new URL for the image.
+     * @param url
+     */
     public static void setImageURL(String url){
         imageView.setImage(new Image(url));
     }
